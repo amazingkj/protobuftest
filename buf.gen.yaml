@@ -1,0 +1,28 @@
+version: v1
+managed:
+  enabled: true
+  python_package_prefix:
+    default: kuma_demo_protos.gen.python
+
+plugins:
+  # Python 코드 생성
+  - plugin: buf.build/protocolbuffers/python
+    out: gen/python
+    opt:
+      - paths=source_relative
+
+  - plugin: buf.build/grpc/python  
+    out: gen/python
+    opt:
+      - paths=source_relative
+
+  # Go 코드 생성 (향후 확장용)
+  - plugin: buf.build/protocolbuffers/go
+    out: gen/go
+    opt:
+      - paths=source_relative
+      
+  - plugin: buf.build/grpc/go
+    out: gen/go  
+    opt:
+      - paths=source_relative
