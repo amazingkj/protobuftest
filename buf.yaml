@@ -1,7 +1,5 @@
 version: v1
 name: buf.build/company/kuma-demo-protos
-deps:
-  - buf.build/googleapis/googleapis
 
 breaking:
   use:
@@ -12,8 +10,4 @@ lint:
     - DEFAULT
   except:
     - FIELD_LOWER_SNAKE_CASE
-    - PACKAGE_DIRECTORY_MATCH  # 기존 구조 호환성
-
-build:
-  excludes:
-    - "**/*_test.proto"
+    - PACKAGE_DIRECTORY_MATCH

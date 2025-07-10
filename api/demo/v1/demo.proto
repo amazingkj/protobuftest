@@ -1,11 +1,18 @@
 syntax = "proto3";
 
-package demo;
+package demo.v1;
+
+option go_package = "github.com/company/kuma-demo-protos/gen/go/demo/v1;demov1";
+option py_generic_services = true;
 
 // DemoService 정의
 service DemoService {
-    rpc SayHello (HelloRequest) returns (HelloReply);
-    rpc GetStatus (StatusRequest) returns (StatusReply);
+    rpc SayHello (HelloRequest) returns (HelloReply) {
+        option idempotency_level = NO_SIDE_EFFECTS;
+    }
+    rpc GetStatus (StatusRequest) returns (StatusReply) {
+        option idempotency_level = NO_SIDE_EFFECTS;
+    }
     rpc StreamMessages (StreamRequest) returns (stream StreamResponse);
 }
 
